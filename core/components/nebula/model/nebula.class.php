@@ -22,7 +22,6 @@ class Locator {
     }
 
     public function getLocations(){
-        require_once MODX_CORE_PATH . 'components/nebula/model/locations.class.php';
 
         $strQuery = "SELECT * FROM modx_locator_locations";
         $objGetLocations = $this->modx->prepare($strQuery);
