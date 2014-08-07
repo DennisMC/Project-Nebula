@@ -31,15 +31,15 @@ class Locator {
             if(!is_array($arrLocations)){
                 return array();
             }
-            foreach($arrLocations as $arrLocation){
-                $arrReturn[$arrLocation['id']] = $arrLocation;
+            foreach($arrLocations as $intKey => $arrLocation){
+                $arrReturn[$intKey] = $arrLocation;
                 /*if(!is_array($arrLocation) || !array_key_exists('extended', $arrLocation)){
                     break;
                 }*/
-                $arrReturn[$arrLocation['id']]['extended'] = json_decode($arrLocation['extended'], true);
+                $arrReturn[$intKey]['extended'] = json_decode($arrLocation['extended'], true);
             }
         }
 
-        return json_encode($arrReturn);
+        return $arrReturn;
     }
 }
