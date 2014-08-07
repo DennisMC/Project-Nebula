@@ -1,19 +1,53 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>[[++site_name]] - [[*pagetitle]]</title>
-    <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
     <base href="[[++site_url]]" />
-    <link rel="stylesheet" href="/assets/css/style.css?v=1">
+    <link rel="shortcut icon" href="favicon.ico">
+    <link rel="stylesheet" href="/assets/css/style.css?v=1" />
+    <link href='http://fonts.googleapis.com/css?family=Varela' rel='stylesheet' type='text/css'>
+    <script src="/assets/bower_components/modernizr/modernizr.js"></script>
     <link rel="stylesheet" href="/assets/components/nebula/css/nebula.css?v=1">
     <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAnI_hLzKyI-o4ndpKU4qzahrj_8pjURHE" ></script>
+    <script type="text/javascript" src="/assets/components/ajaxconnector/js/ajaxConnector.js?ver=1" ></script>
     <script type="text/javascript" src="/assets/components/nebula/js/nebula.js?ver=1" ></script>
+  </head>
+  <body>
 
-</head>
-<body>
+    <header>
+      <div class="fixed">
+        <nav class="top-bar" data-topbar>
+          <ul class="title-area">
+            <li class="name">
+              <h1><a href="#"><img src="/assets/images/logo.png"></a></h1>
+            </li>
+            <li class="toggle-topbar menu-icon"><a href="#"><span></span></a></li>
+          </ul>
 
-[[*content]]
+          <section class="top-bar-section">
+            <ul class="right">
+              <li><a href="#">About</a></li>
+            </ul>
+          </section>
+        </nav>
+     </div>
+    </header>
+
+    <main>
+
+    [[*content]]
+
+    </main>
+
+    <footer>
 
 
-</body>
+    </footer>
+
+    <script src="/assets/bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="/assets/bower_components/foundation/js/foundation.min.js"></script>
+    <script src="/assets/js/app.js"></script>
+  </body>
 </html>

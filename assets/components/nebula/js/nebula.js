@@ -17,6 +17,23 @@ function addNewLocation(e) {
     console.log(e);
 }
 
+function testConnection() {
+
+    var objParams = {
+        "newBodega" : 1
+    };
+    ajaxRpc('web/addNewBodega', objParams, 'nebula', function(objData){
+
+        console.log(objData);
+        if(objData.hasOwnProperty('result')
+            && objData.result.hasOwnProperty('message')
+            && objData.result.success == 'true'
+            ) {
+            console.log(objData);
+        }
+    }, '', '');
+
+}
 function initialize() {
     var mapOptions = {
         zoom: 18,
