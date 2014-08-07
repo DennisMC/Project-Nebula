@@ -1,0 +1,9 @@
+html { height: 100%;
+    position: relative; }
+body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    position: relative;
+}
