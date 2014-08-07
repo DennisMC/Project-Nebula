@@ -5,9 +5,42 @@
  * @version 2014-08-07
  */
 
-namespace nebula;
+namespace Nebula;
 
 
-class nebula {
+class Locator {
+    /** @var  \modX $modx */
+    public $modx;
+    public $locations;
 
-} 
+    function __construct(&$modx) {
+        $this->modx =& $modx;
+    }
+
+    public function addLocation(){
+        return 'hello world';
+    }
+
+    public function getLocations(){
+        require_once MODX_CORE_PATH . 'components/nebula/model/locations.class.php';
+
+        $strQuery = "SELECT * FROM modx_locator_locations";
+        $objGetLocations = $this->modx->prepare($strQuery);
+
+        if($objGetLocations->execute()){
+            $arrLocations = $objGetLocations->fetchAll(\PDO::FETCH_ASSOC);
+            if(!is_array($arrLocations)){
+                return array();
+            }
+            foreach($arrLocations as $arrLocation){
+                $arrReturn[$arrLocation['id']] = $arrLocation;
+                /*if(!is_array($arrLocation) || !array_key_exists('extended', $arrLocation)){
+                    break;
+                }*/
+                $arrReturn[$arrLocation['id']]['extended'] = json_decode($arrLocation['extended'], true);
+            }
+        }
+
+        return json_encode($arrReturn);
+    }
+}

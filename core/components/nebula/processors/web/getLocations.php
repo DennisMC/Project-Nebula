@@ -10,7 +10,7 @@ if(array_key_exists('newLocation', $arrRequest['params'])) {
     //$arrOutput = "Ninja Test";
 
     // This variable is json encoded as the “result” in the ajax connector
-    $arrOutput = $objLocator->addLocation($arrLocationData);
+    $arrOutput = $objLocator->getLocations();
 }
 else {
     // Return with parameters error
