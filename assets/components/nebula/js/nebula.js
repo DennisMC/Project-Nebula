@@ -21,7 +21,12 @@ function toggleBounce(objMarker) {
     } else {
         objMarker.setAnimation(google.maps.Animation.BOUNCE);
     }
-    objLastClickedMarker = objMarker;
+    if(objLastClickedMarker !== objMarker) {
+        objLastClickedMarker = objMarker;
+    }
+    else {
+        objLastClickedMarker = undefined;
+    }
 }
 
 
@@ -46,7 +51,7 @@ function getBodegaData() {
 function initialize() {
 
     var mapOptions = {
-        zoom: 18,
+        zoom: 13,
         center: locBetterCollective
     };
     var arrNoInfoIcons = [
@@ -66,13 +71,14 @@ function initialize() {
         if(typeof objInfoWindow != 'undefined') {
             objInfoWindow.close();
         }
-
+        if(objLastClickedMarker) {
+            toggleBounce(objLastClickedMarker);
+        }
     });
 
 }
 
 var addNebulaMarkers = function(arrMarkers) {
-    console.log(arrMarkers);
     for(var i = 0; i < arrMarkers.length; i += 1) {
         var locBodegaMarker = new google.maps.LatLng(arrMarkers[i].latitude, arrMarkers[i].longtitude);
         var strMarkerIcon = 'alt_beer_open.png';
@@ -101,14 +107,39 @@ var openInfoWindow = function(objMarker) {
     var strBodegaName = objMarker.name;
     var strBodegaAddress = objMarker.address1;
     var strBodegaPhone = objMarker.phone;
-    var strInfoboxMarkup = '<div id="content">'+
-        '<div id="siteNotice">'+
-        '</div>'+
+
+    var strInfoboxMarkup = '<div class="bodega-info" style="width:400px;">'+
+    '<div class="row">'+
+        '<div class="large-8 columns">'+
         '<h3 id="firstHeading" class="firstHeading">'+strBodegaName+'</h3>'+
-        '<div id="bodyContent">'+
-        '<p style="">Much Text, so content.. Wow</p>'+
-        '<p>Adr: '+strBodegaAddress+' --- Tlf: '+ strBodegaPhone+ '</p>'+
-        '</div>'+
+            '<img src="assets/components/nebula/images/alt_beer_open.png">'+
+                '<img src="assets/components/nebula/images/alt_beer_open.png">'+
+                    '<img src="assets/components/nebula/images/alt_beer_open.png">'+
+                        '<img src="assets/components/nebula/images/alt_beer_open.png">'+
+                            '<img src="assets/components/nebula/images/alt_beer_closed.png">'+
+                                '<p>Open today:10-24</p>'+
+                                '<p>Get drunk and have fun...</p>'+
+                            '</div>'+
+                            '<div class="large-4 columns text-right">'+
+                                '<img src="assets/components/nebula/images/styrmanden.jpg" style="width:80px; margin-top:20px;">'+
+                               '     <p>Streetview</p>'+
+                             '   </div>'+
+                           ' </div>'+
+
+                          '  <div class="row">'+
+                             '   <div class="large-6 columns">'+
+                                '    <img src="assets/components/nebula/images/cigarette_no.png">'+
+                                      '  <img src="assets/components/nebula/images/ball8_yes.png">'+
+                                         '   <img src="assets/components/nebula/images/jukebox_no.png">'+
+                                         '   </div>'+
+                                          '  <div class="large-6 columns text-right">'+
+                                             '   <img src="assets/components/nebula/images/styrmanden.jpg" style="width:40px;">'+
+                                              '      <img src="assets/components/nebula/images/styrmanden.jpg" style="width:40px;">'+
+                                               '         <img src="assets/components/nebula/images/styrmanden.jpg" style="width:40px;">'+
+                                                           ' <p><small>Pictures of '+strBodegaName+'</small></p>'+
+                                                        '</div>'+
+                                                   ' </div>'+
+
         '</div>';
 
     objInfoWindow = new google.maps.InfoWindow({
